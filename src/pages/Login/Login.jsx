@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
@@ -25,6 +26,7 @@ const Login = () => {
                   </label>
                   <input
                     type="text"
+                    name="email"
                     placeholder="email"
                     className="input input-bordered"
                   />
@@ -34,7 +36,8 @@ const Login = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="text"
+                    type="password"
+                    name="password"
                     placeholder="password"
                     className="input input-bordered"
                   />
@@ -52,6 +55,12 @@ const Login = () => {
                   />
                 </div>
               </form>
+              <p className="text-center">
+                New to this mixxStore ?{" "}
+                <Link className="text-secondary font-bold" to="/signup">
+                  Sign Up
+                </Link>{" "}
+              </p>
             </div>
           </div>
         </div>
