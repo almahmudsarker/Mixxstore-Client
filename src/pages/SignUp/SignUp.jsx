@@ -18,7 +18,7 @@ const SignUp = () => {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
-            <form onClick={handleSignUp}>
+            <form onSubmit={handleSignUp}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -27,6 +27,7 @@ const SignUp = () => {
                   type="text"
                   name="name"
                   placeholder="name"
+                  required
                   className="input input-bordered"
                 />
               </div>
@@ -37,6 +38,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   name="photoURL"
+                  required
                   placeholder="photoURL"
                   className="input input-bordered"
                 />
@@ -48,6 +50,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   name="email"
+                  required
                   placeholder="email"
                   className="input input-bordered"
                 />

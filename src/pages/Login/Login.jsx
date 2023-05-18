@@ -19,15 +19,15 @@ const Login = () => {
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
-              <form onClick={handleLogin}>
+              <form onSubmit={handleLogin}>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
                   <input
                     type="text"
-                    name="email"
                     placeholder="email"
+                    required
                     className="input input-bordered"
                   />
                 </div>
@@ -36,9 +36,9 @@ const Login = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="password"
-                    name="password"
+                    type="text"
                     placeholder="password"
+                    required
                     className="input input-bordered"
                   />
                   <label className="label">
@@ -56,7 +56,7 @@ const Login = () => {
                 </div>
               </form>
               <p className="text-center">
-                New to this mixxStore ?{" "}
+                New to this mixxStore{" "}
                 <Link className="text-secondary font-bold" to="/signup">
                   Sign Up
                 </Link>{" "}
