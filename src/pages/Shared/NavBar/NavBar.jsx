@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
-// import { useContext } from "react";
-// import { AuthContext } from "../../../providers/AuthProvider";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { useContext } from "react";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 const NavBar = () => {
-//   const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-//   const handleLogOut = () => {
-//     logOut()
-//       .then(() => {})
-//       .catch((error) => console.log(error));
-//   };
+      const Name = user ? user.displayName : "Guest";
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   const navItems = (
     <>
@@ -20,7 +24,8 @@ const NavBar = () => {
         {" "}
         <Link to="/alltoys">All Toys</Link>{" "}
       </li>
-      {/* {user?.email ? ( */}
+
+      {user?.email ? (
       <>
         <li>
           <Link to="/mytoys">My Toys</Link>
@@ -30,16 +35,16 @@ const NavBar = () => {
         </li>
         <li>
           {" "}
-          {/* <button onClick={handleLogOut}>Log out</button>{" "} */}
-          <button>Log out</button>{" "}
+          <button onClick={handleLogOut}>Log out</button>{" "}
         </li>
       </>
-      {/* ) : ( */}
+      ) : (
       <li>
         {" "}
         <Link to="/login">Login</Link>{" "}
       </li>
-      {/* )} */}
+      )}
+
       <li>
         {" "}
         <Link to="/blogs">Blogs</Link>{" "}
@@ -85,11 +90,21 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <img
-          className="rounded w-40"
-          src="https://i.ibb.co/jHpXjqr/mixxstore-1.png"
-          alt=""
-        />
+        <div className="avatar">
+        {user && <div className="w-16 mr-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+          <img
+            src={
+              user?.photoURL || ""
+            }
+            alt=""
+          />
+          <Tooltip
+            anchorSelect=".my-anchor-element"
+            place="left"
+            content={user ? Name : "Login"}
+          />
+        </div>}
+        </div>
       </div>
     </div>
   );
