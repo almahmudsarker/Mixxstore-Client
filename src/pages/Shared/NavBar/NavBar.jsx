@@ -90,20 +90,15 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <div className="avatar">
-        {user && <div className="w-16 mr-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-          <img
-            src={
-              user?.photoURL || ""
-            }
-            alt=""
-          />
-          <Tooltip
-            anchorSelect=".my-anchor-element"
-            place="left"
-            content={user ? Name : "Login"}
-          />
-        </div>}
+        <div
+          className="avatar tooltip tooltip-secondary tooltip-left"
+          data-tip={Name}
+        >
+          {user && (
+            <div className="w-16 mr-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img src={user?.photoURL || ""} alt="" />
+            </div>
+          )}
         </div>
       </div>
     </div>
