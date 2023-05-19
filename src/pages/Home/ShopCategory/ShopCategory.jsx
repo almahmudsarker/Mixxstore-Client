@@ -5,7 +5,7 @@ import "react-tabs/style/react-tabs.css";
 const ShopCategory = () => {
     const categories = [
       {
-        name: "Soccer Toys",
+        name: "Soccer",
         subCategories: [
           {
             name: "Football Toys",
@@ -46,7 +46,7 @@ const ShopCategory = () => {
         ],
       },
       {
-        name: "Cricket Toys",
+        name: "Cricket",
         subCategories: [
           {
             name: "Cricket Bats",
@@ -87,7 +87,7 @@ const ShopCategory = () => {
         ],
       },
       {
-        name: "Basketball Toys",
+        name: "Basketball",
         subCategories: [
           {
             name: "Basketball Post",
