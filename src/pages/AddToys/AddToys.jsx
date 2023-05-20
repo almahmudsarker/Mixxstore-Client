@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import useTitle from '../../hooks/useTitle';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../providers/AuthProvider';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddToys = () => {
     useTitle("Add Toys");
@@ -29,6 +31,7 @@ const AddToys = () => {
         form.reset();
     };
 
+    const notify = () => toast("Added Data Successfully!");
 
     return (
       <div>
@@ -125,9 +128,13 @@ const AddToys = () => {
           <br />
           {/* errors will return when field validation fails  */}
           {errors.exampleRequired && <span>This field is required</span>}
-          <button className="w-60 mt-4 btn btn-secondary text-xl font-semibold">
+          <button
+            onClick={notify}
+            className="w-60 mt-4 btn btn-secondary text-xl font-semibold"
+          >
             <input type="submit" />
           </button>
+          <ToastContainer />
         </form>
       </div>
     );
