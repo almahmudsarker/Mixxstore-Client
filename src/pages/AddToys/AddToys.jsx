@@ -32,7 +32,9 @@ const AddToys = () => {
 
     return (
       <div>
-        <h3 className="text-5xl text-center font-bold mb-5">Add Your Toy Here</h3>
+        <h3 className="text-5xl text-center font-bold mb-5">
+          Add Your Toy Here
+        </h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* register your input into the hook by invoking the "register" function */}
           <label className="text-xl font-semibold">Toy Name</label>
@@ -109,11 +111,16 @@ const AddToys = () => {
           />
           <br />
           <lebel className="text-xl mt-4 font-semibold">Toy Quantity</lebel>
-          <br />
           <input
-            className="text-input bg-slate-50 text-base-100 p-2 w-30 h-30"
+            className="text-input bg-slate-50 text-base-100 p-2 w-30 mt-4 ml-3 mr-5 h-30"
             type="number"
             {...register("quantity")}
+          />
+          <lebel className="text-xl mt-4 font-semibold">Toy Rating</lebel>
+          <input
+            className="text-input bg-slate-50 text-base-100 p-2 w-30 ml-3 h-30"
+            type="number"
+            {...register("rating")}
           />
           <br />
           {/* errors will return when field validation fails  */}
