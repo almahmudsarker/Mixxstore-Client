@@ -54,12 +54,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/singletoy/:_id",
-        element: (
-          <PrivateRoute>
-            <SingleToy />
-          </PrivateRoute>
-        ),
+        path: ":id",
+        element: <SingleToy />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/alltoys/${params.id}`),
       },
     ],
   },

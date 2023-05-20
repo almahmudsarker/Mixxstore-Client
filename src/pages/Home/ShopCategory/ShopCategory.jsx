@@ -1,134 +1,146 @@
 
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Tabs, Tab, TabPanel, TabList } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+
 const ShopCategory = () => {
-    const categories = [
-      {
-        name: "Soccer",
-        subCategories: [
-          {
-            name: "Football Toys",
-            toys: [
-              {
-                name: "Football",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-          {
-            name: "Goal Post",
-            toys: [
-              {
-                name: "Bars",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-          {
-            name: "Player Set",
-            toys: [
-              {
-                name: "Player statue",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-        ],
-      },
-      {
-        name: "Cricket",
-        subCategories: [
-          {
-            name: "Cricket Bats",
-            toys: [
-              {
-                name: "Bat",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-          {
-            name: "Cricket Balls",
-            toys: [
-              {
-                name: "Ball",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-          {
-            name: "Player sets",
-            toys: [
-              {
-                name: "Players statue",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-        ],
-      },
-      {
-        name: "Basketball",
-        subCategories: [
-          {
-            name: "Basketball Post",
-            toys: [
-              {
-                name: "Bars",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-          {
-            name: "Basketball",
-            toys: [
-              {
-                name: "Ball",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-          {
-            name: "Player Sets",
-            toys: [
-              {
-                name: "Players statue",
-                price: "$9.99",
-                rating: 4.5,
-                image: "toy1.jpg",
-              },
-              // Add more toys...
-            ],
-          },
-        ],
-      },
-      // Add more categories...
-    ];
+
+    // const categories = [
+    //   {
+    //     name: "Soccer",
+    //     subCategories: [
+    //       {
+    //         name: "Football Toys",
+    //         toys: [
+    //           {
+    //             name: "Football",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //       {
+    //         name: "Goal Post",
+    //         toys: [
+    //           {
+    //             name: "Bars",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //       {
+    //         name: "Player Set",
+    //         toys: [
+    //           {
+    //             name: "Player statue",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     name: "Cricket",
+    //     subCategories: [
+    //       {
+    //         name: "Cricket Bats",
+    //         toys: [
+    //           {
+    //             name: "Bat",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //       {
+    //         name: "Cricket Balls",
+    //         toys: [
+    //           {
+    //             name: "Ball",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //       {
+    //         name: "Player sets",
+    //         toys: [
+    //           {
+    //             name: "Players statue",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     name: "Basketball",
+    //     subCategories: [
+    //       {
+    //         name: "Basketball Post",
+    //         toys: [
+    //           {
+    //             name: "Bars",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //       {
+    //         name: "Basketball",
+    //         toys: [
+    //           {
+    //             name: "Ball",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //       {
+    //         name: "Player Sets",
+    //         toys: [
+    //           {
+    //             name: "Players statue",
+    //             price: "$9.99",
+    //             rating: 4.5,
+    //             image: "toy1.jpg",
+    //           },
+    //           // Add more toys...
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   // Add more categories...
+    // ];
+
+
+    const [toys, setToys] = useState([]);
+    useEffect(() => {
+      fetch("http://localhost:5000/alltoys")
+        .then((res) => res.json())
+        .then((data) => setToys(data));
+    }, []);
+
 
     return (
       <div>
@@ -140,25 +152,22 @@ const ShopCategory = () => {
         <div>
           <Tabs>
             <TabList className="flex">
-              {categories.map((category) => (
-                <Tab
-                  key={category.name}
-                  className="p-4 border-b-2 border-gray-200"
-                >
-                  {category.name}
+              {toys.map((toy) => (
+                <Tab key={toy._id} className="p-4 border-b-2 border-gray-200">
+                  {toy.categoryName}
                 </Tab>
               ))}
             </TabList>
 
-            {categories.map((category) => (
-              <TabPanel key={category.name} className="p-4">
-                {category.subCategories.map((subCategory) => (
+            {toys.map((toy) => (
+              <TabPanel key={toy._id} className="p-4">
+                {toys.map((subCategory) => (
                   <div key={subCategory.name}>
                     <h3 className="text-lg font-bold mb-4">
                       {subCategory.name}
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
-                      {subCategory.toys.map((toy) => (
+                      {toys.map((toy) => (
                         <div
                           key={toy.name}
                           className="p-4 border border-gray-200 rounded"

@@ -1,7 +1,7 @@
 
 const Footer = () => {
     return (
-      <footer className="footer p-10 bg-base-200 text-base-content">
+      <footer className="footer p-10 sticky bottom-0 text-base-content bg-base-100 mt-10">
         <div>
           <h1 className="text-xl">MixxStore</h1>
           <p>

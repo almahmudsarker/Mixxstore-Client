@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import useTitle from '../../hooks/useTitle';
 
 const AllToys = () => {
@@ -10,7 +10,7 @@ const AllToys = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
-        fetch("https://assignment-11-server-three-gamma.vercel.app/alltoys", {
+        fetch("http://localhost:5000/alltoys", {
           params: { limit: 20 },
         })
           .then((res) => res.json())
@@ -19,7 +19,7 @@ const AllToys = () => {
 
 
     const handleSearch = () => {
-        fetch("https://assignment-11-server-three-gamma.vercel.app/alltoys", {
+        fetch("http://localhost:5000/alltoys", {
           params: { limit: 20, search: searchQuery },
         })
           .then((response) => {
@@ -36,9 +36,7 @@ const AllToys = () => {
       const isLoggedIn = localStorage.getItem("isLoggedIn");
       if (isLoggedIn) {
         // Redirect to the Details Page
-        navigate(
-          `https://assignment-11-server-three-gamma.vercel.app/alltoys/${_id}`
-        );
+        navigate(`http://localhost:5000/alltoys/${_id}`);
       } else {
         // Redirect to the Login Page
         navigate("/login");
@@ -88,12 +86,7 @@ const AllToys = () => {
                 <td className="border border-gray-300 p-2">{toy.price}</td>
                 <td className="border border-gray-300 p-2">{toy.quantity}</td>
                 <td className="border border-gray-300 p-2">
-                  <button
-                    className="px-4 py-2 text-white bg-blue-500 rounded-lg"
-                    onClick={() => handleViewDetails(toy._id)}
-                  >
-                    View Details
-                  </button>
+                  <Link to={`/alltoys/${toy._id}`}>View Details</Link>
                 </td>
               </tr>
             ))}

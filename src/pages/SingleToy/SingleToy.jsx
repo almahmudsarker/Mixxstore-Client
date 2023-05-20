@@ -1,9 +1,13 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
-const SingleToy = ({_id}) => {
+const SingleToy = () => {
+    const singleToy = useLoaderData();
+    const {_id, image} = singleToy;
     return (
         <div>
-            {_id}
+           {_id}
+              {image}
         </div>
     );
 };
