@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Tabs, Tab, TabPanel, TabList } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ShopCategory = () => {
 
@@ -133,6 +135,7 @@ const ShopCategory = () => {
     //   // Add more categories...
     // ];
 
+    const notify = () => toast("You have to Login First!");
 
     const [toys, setToys] = useState([]);
     useEffect(() => {
@@ -181,9 +184,13 @@ const ShopCategory = () => {
                           <p className="text-gray-600">{toy.price}</p>
                           <p className="text-yellow-500">{toy.rating} stars</p>
                           <Link to="/">
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
+                            <button
+                              onClick={notify}
+                              className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+                            >
                               View Details
                             </button>
+                            <ToastContainer />
                           </Link>
                         </div>
                       ))}
