@@ -10,7 +10,7 @@ const AllToys = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:5000/alltoys", {
+        fetch("https://assignment-11-server-three-gamma.vercel.app/alltoys", {
           params: { limit: 20 },
         })
           .then((res) => res.json())
@@ -18,7 +18,9 @@ const AllToys = () => {
     }, []);
 
     const handleSearch = () => {
-        fetch(`http://localhost:5000/toysearch/${searchQuery}`)
+        fetch(
+          `https://assignment-11-server-three-gamma.vercel.app/toysearch/${searchQuery}`
+        )
           .then((res) => res.json())
           .then((data) => setToys(data));
     };
@@ -29,7 +31,9 @@ const AllToys = () => {
       const isLoggedIn = localStorage.getItem("isLoggedIn");
       if (isLoggedIn) {
         // Redirect to the Details Page
-        navigate(`http://localhost:5000/alltoys/${_id}`);
+        navigate(
+          `https://assignment-11-server-three-gamma.vercel.app/alltoys/${_id}`
+        );
       } else {
         // Redirect to the Login Page
         navigate("/login");

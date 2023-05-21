@@ -11,11 +11,13 @@ const MyToys = () => {
   const [toys, setToys] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/mytoys/${user?.email}`)
+    fetch(
+      `https://assignment-11-server-three-gamma.vercel.app/mytoys/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
-      })
+      });
     
   }, [user]);
   

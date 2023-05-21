@@ -16,17 +16,17 @@ const AddToys = () => {
       formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
-     fetch("http://localhost:5000/addtoy", {
-         method: "POST",
-            headers: {
-                "Content-Type": "application/json", 
-            },
-            body: JSON.stringify(data),
-        })
-        .then((res) => res.json())
-        .then((result) => {
-            console.log(result);
-        });
+     fetch("https://assignment-11-server-three-gamma.vercel.app/addtoy", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(data),
+     })
+       .then((res) => res.json())
+       .then((result) => {
+         console.log(result);
+       });
         console.log(data)
         form.reset();
     };

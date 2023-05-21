@@ -139,7 +139,7 @@ const ShopCategory = () => {
 
     const [toys, setToys] = useState([]);
     useEffect(() => {
-      fetch("http://localhost:5000/alltoys")
+      fetch("https://assignment-11-server-three-gamma.vercel.app/alltoys")
         .then((res) => res.json())
         .then((data) => setToys(data));
     }, []);
