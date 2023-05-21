@@ -17,17 +17,10 @@ const AllToys = () => {
           .then((data) => setToys(data));
     }, []);
 
-
     const handleSearch = () => {
-        fetch("http://localhost:5000/alltoys", {
-          params: { limit: 20, search: searchQuery },
-        })
-          .then((response) => {
-            setToys(response.data);
-          })
-          .catch((error) => {
-            console.error("Error searching toys:", error);
-          });
+        fetch(`http://localhost:5000/toysearch/${searchQuery}`)
+          .then((res) => res.json())
+          .then((data) => setToys(data));
     };
 
 
@@ -55,7 +48,6 @@ const AllToys = () => {
             type="text"
             placeholder="Search by Toy Name"
             className="px-4 py-2 border border-gray-300 rounded-lg"
-            value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button
