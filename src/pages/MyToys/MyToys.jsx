@@ -1,33 +1,34 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useTitle from "../../hooks/useTitle";
 
 const MyToys = () => {
   useTitle("My Toys");
-  // Mocked data for demonstration
-  const [toys, setToys] = useState([
-    {
-      id: 1,
-      name: "Toy 1",
-      price: 10,
-      quantity: 5,
-      description: "Description 1",
-    },
-    {
-      id: 2,
-      name: "Toy 2",
-      price: 15,
-      quantity: 3,
-      description: "Description 2",
-    },
-  ]);
+
+  const {user} = useContext(AuthContext);
+  const [toys, setToys] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/mytoys/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+      })
+    
+  }, [user]);
+  
+  const dell = () => toast("Deleted Data Successfully!");
+  const up = () => toast("Update Data Successfully!");
 
   const [selectedToy, setSelectedToy] = useState(null);
+
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   const handleUpdateToy = (updatedToy) => {
     // Find the index of the updated toy in the toys array
-    const index = toys.findIndex((toy) => toy.id === updatedToy.id);
+    const index = toys.findIndex((toy) => toy._id === updatedToy._id);
 
     if (index !== -1) {
       // Update the toy with the new information
@@ -37,7 +38,6 @@ const MyToys = () => {
         return updatedToys;
       });
 
-      toast.success("Toy updated successfully");
     } else {
       toast.error("Failed to update toy");
     }
@@ -49,55 +49,60 @@ const MyToys = () => {
 
   const handleDeleteToy = (toyId) => {
     // Filter out the toy to be deleted from the toys array
-    const updatedToys = toys.filter((toy) => toy.id !== toyId);
+    const updatedToys = toys.filter((toy) => toy._id !== toyId);
 
     setToys(updatedToys);
-
-    toast.success("Toy deleted successfully");
   };
 
   return (
     <div>
-      <h1>My Toys</h1>
-      <table>
+      <h1 className="text-5xl text-center font-bold mb-5">My Toys</h1>
+      <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Description</th>
-            <th>Actions</th>
+            <th className="border border-gray-300 p-2">Name</th>
+            <th className="border border-gray-300 p-2">Price</th>
+            <th className="border border-gray-300 p-2">Quantity</th>
+            <th className="border border-gray-300 p-2">Description</th>
+            <th className="border border-gray-300 p-2">Actions</th>
           </tr>
         </thead>
         <tbody>
           {toys.map((toy) => (
-            <tr key={toy.id}>
-              <td>{toy.name}</td>
-              <td>{toy.price}</td>
-              <td>{toy.quantity}</td>
-              <td>{toy.description}</td>
-              <td>
+            <tr key={toy._id}>
+              <td className="border border-gray-300 p-2">{toy.name}</td>
+              <td className="border border-gray-300 p-2">{toy.price}</td>
+              <td className="border border-gray-300 p-2">{toy.quantity}</td>
+              <td className="border border-gray-300 p-2">{toy.details}</td>
+              <td className="border border-gray-300 text-center p-2">
                 <button
+                  className="border border-gray-300 p-2 mr-4"
                   onClick={() => {
                     setSelectedToy(toy);
                     setShowUpdateModal(true);
+                    up();
                   }}
                 >
                   Update
                 </button>
                 <button
+                  className="border border-gray-300 p-2"
                   onClick={() => {
                     if (
                       window.confirm(
                         "Are you sure you want to delete this toy?"
                       )
                     ) {
-                      handleDeleteToy(toy.id);
+                      handleDeleteToy(toy._id);
+                    }
+                    {
+                      dell();
                     }
                   }}
                 >
                   Delete
                 </button>
+                <ToastContainer />
               </td>
             </tr>
           ))}
@@ -154,14 +159,14 @@ const MyToys = () => {
                 />
               </div>
               <div>
-                <label htmlFor="description">Description:</label>
+                <label htmlFor="details">Description:</label>
                 <textarea
-                  id="description"
-                  value={selectedToy.description}
+                  id="details"
+                  value={selectedToy.details}
                   onChange={(e) =>
                     setSelectedToy((prevToy) => ({
                       ...prevToy,
-                      description: e.target.value,
+                      details: e.target.value,
                     }))
                   }
                 />

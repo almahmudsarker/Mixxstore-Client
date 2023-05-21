@@ -46,7 +46,9 @@ const AllToys = () => {
 
     return (
       <div>
-        <h1>All Toys: {toys.length}</h1>
+        <h1 className="text-5xl text-center font-bold mb-5">
+          All Toys: {toys.length}
+        </h1>
 
         <div className="mb-4 text-center">
           <input
